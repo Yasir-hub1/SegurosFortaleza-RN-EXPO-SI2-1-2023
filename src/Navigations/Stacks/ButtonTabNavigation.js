@@ -1,18 +1,21 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "react-native-elements";
-
-import ClienteStack from "./ClienteStack";
-
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
+
+import VehiculosStack from "./VehiculosStack";
+import PolisaStack from "./PolisaStack";
+import PagoStack from "./PagoStack";
+import SiniestroStack from "./SiniestroStack";
+import PerfilStack from "./PerfilStack";
 
 const btnTabs = createBottomTabNavigator();
-import { useNavigation } from "@react-navigation/native";
-import Notificaciones from "../../Screen/Client/Notificaciones";
+
 const TabBar = ({ appName }) => {
 	const navigation = useNavigation();
 	return (
 		<btnTabs.Navigator
-			initialRouteName="Cliente"
+			initialRouteName="Vehiculos"
 			screenOptions={({ route, navigation }) => ({
 				tabBarIcon: ({ focused }) => verIcon(route, focused),
 				tabBarStyle: {
@@ -24,8 +27,8 @@ const TabBar = ({ appName }) => {
 				},
 			})}>
 			<btnTabs.Screen
-				name="Inicio"
-				component={ClienteStack}
+				name="Vehiculos"
+				component={VehiculosStack}
 				options={{
 					headerTitle: "Bienvenido",
 					// headerTitleAlign: "center",
@@ -33,8 +36,37 @@ const TabBar = ({ appName }) => {
 				}}
 			/>
 			<btnTabs.Screen
-				name="Notificaciones"
-				component={Notificaciones}
+				name="Polisa"
+				component={PolisaStack}
+				/* options={{
+					
+					headerShown: false,
+				}} */
+			/>
+
+			<btnTabs.Screen
+				name="Pagos"
+				component={PagoStack}
+				options={{
+					// headerTitle: "Contratos",
+					// headerTitleAlign: "center",
+					headerShown: true,
+				}}
+			/>
+
+			<btnTabs.Screen
+				name="Siniestros"
+				component={SiniestroStack}
+				options={{
+					// headerTitle: "Contratos",
+					// headerTitleAlign: "center",
+					headerShown: true,
+				}}
+			/>
+
+			<btnTabs.Screen
+				name="Perfil"
+				component={PerfilStack}
 				options={{
 					// headerTitle: "Contratos",
 					// headerTitleAlign: "center",
@@ -49,12 +81,24 @@ export default TabBar;
 const verIcon = (route, focused) => {
 	let icon = "";
 	switch (route.name) {
-		case "Inicio": {
-			icon = "md-camera-outline";
+		case "Vehiculos": {
+			icon = "car-sport";
 			break;
 		}
-		case "Notificaciones": {
-			icon = "notifications-circle-outline";
+		case "Polisa": {
+			icon = "card-sharp";
+			break;
+		}
+		case "Pagos": {
+			icon = "md-card-outline";
+			break;
+		}
+		case "Siniestros": {
+			icon = "car-sport";
+			break;
+		}
+		case "Perfil": {
+			icon = "person-sharp";
 			break;
 		}
 	}

@@ -65,6 +65,19 @@ export async function logout() {
  }
 
 
+ // actualizando vehiculos
+
+ export async function editarVehiculo(data){
+    try {
+        let resp= await axios.post("editarVehiculos",{data});
+        console.log(resp.data);
+        return resp.data.data;
+    } catch (error) {
+        throw errorHandler(error);
+    }
+ }
+
+
 
 
 

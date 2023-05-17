@@ -1,88 +1,115 @@
-import React from "react";
+import React, { useState } from "react";
 import {
 	View,
-	FlatList,
 	Text,
-	TouchableOpacity,
 	Image,
+	TouchableOpacity,
+	FlatList,
 	StyleSheet,
+	RefreshControl,
 } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
 import { urlImgVehiculo } from "../Util/Api";
 
-const CardList = ({ data, onPressItem }) => {
+const CardList = props => {
+	const { data, onRefresh, navigation } = props;
+
+	const [refreshing, setRefreshing] = useState(false);
+
+	const handleShow = id => {
+		navigation.navigate("showVehiculo", { id_vehiculo: id });
+	};
+
+	const handleEdit = data => {
+		navigation.navigate("editVehiculo", { dataItem:data });
+	};
+
+	const handleDelete = id => {
+		console.log(`Eliminar tarjeta ${id}`);
+	};
+
 	const renderItem = ({ item }) => (
-		<TouchableOpacity style={styles.card} onPress={() => onPressItem(item)}>
-			<Image
-				source={{ uri: urlImgVehiculo + item.imagen }}
-				style={styles.image}
-			/>
-			<View style={styles.contentContainer}>
-				<Text style={styles.title}>{item.marca}</Text>
-				<Text style={styles.description}>{item.descripcion}</Text>
-				<TouchableOpacity
-					style={styles.button}
-					onPress={() => onPressItem(item)}>
-					<Text style={styles.buttonText}>Ver Detalles</Text>
+		<View style={styles.cardContainer}>
+			<View style={styles.cardBody}>
+				<TouchableOpacity>
+					<Image
+						source={{ uri: urlImgVehiculo + item.imagen }}
+						style={styles.image}
+					/>
 				</TouchableOpacity>
+				<View style={{ flex: 1 }}>
+					<Text style={{ fontWeight: "bold" }}>{item.marca}</Text>
+					<Text>{item.descripcion}</Text>
+
+					<View style={{ flexDirection: "row", marginTop: 10 }}>
+						<TouchableOpacity onPress={() => handleShow(item.id)}>
+							<FontAwesome
+								name="eye"
+								size={20}
+								color={"#778beb"}
+								style={{ marginRight: 10 }}
+							/>
+						</TouchableOpacity>
+
+						<TouchableOpacity onPress={() => handleEdit(item)}>
+							<FontAwesome
+								name="edit"
+								size={20}
+								color={"#f5cd79"}
+								style={{ marginRight: 10 }}
+							/>
+						</TouchableOpacity>
+
+						<TouchableOpacity onPress={() => handleDelete(item.id)}>
+							<FontAwesome name="trash" size={20} color={"#FC427B"} />
+						</TouchableOpacity>
+					</View>
+				</View>
 			</View>
-		</TouchableOpacity>
+		</View>
 	);
 
 	return (
-		<View style={styles.container}>
-			<FlatList
-				data={data}
-				renderItem={renderItem}
-				keyExtractor={item => item.id.toString()}
-			/>
-		</View>
+		<FlatList
+			data={data}
+			renderItem={renderItem}
+			refreshControl={
+				<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+			}
+			keyExtractor={item => item.id}
+			contentContainerStyle={{ paddingVertical: 10 }}
+		/>
 	);
 };
 
+export default CardList;
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		padding: 16,
-	},
-	card: {
-		backgroundColor: "#ffffff",
+	cardContainer: {
+		borderWidth: 1,
 		borderRadius: 8,
-		marginBottom: 16,
-		padding: 16,
-		elevation: 4,
+		borderColor: "white",
+		marginHorizontal: 5,
+		backgroundColor: "white",
+		shadowColor: "#000",
+		shadowOffset: {
+			width: 0,
+			height: 3,
+		},
+		shadowOpacity: 0.29,
+		shadowRadius: 4.65,
+
+		elevation: 7,
+		marginVertical: 8,
+	},
+	cardBody: {
+		flexDirection: "row",
+		marginBottom: 10,
 	},
 	image: {
-		width: "100%",
-		height: 200,
+		width: 80,
+		height: 80,
+		marginRight: 10,
+		borderWidth: 1,
 		borderRadius: 8,
-		marginBottom: 8,
-	},
-	contentContainer: {
-		flexDirection: "column",
-		alignItems: "center",
-		justifyContent: "space-between",
-	},
-	title: {
-		fontSize: 18,
-		fontWeight: "bold",
-		marginBottom: 4,
-	},
-	description: {
-		fontSize: 16,
-		marginBottom: 8,
-	},
-	button: {
-		backgroundColor: "#007aff",
-		paddingVertical: 8,
-		paddingHorizontal: 12,
-		borderRadius: 4,
-	},
-	buttonText: {
-		color: "#ffffff",
-		fontSize: 16,
-		fontWeight: "bold",
-		textAlign: "center",
 	},
 });
-
-export default CardList;

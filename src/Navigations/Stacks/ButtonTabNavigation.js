@@ -106,7 +106,7 @@ const verIcon = (route, focused) => {
 		<Icon
 			name={icon}
 			type="ionicon"
-			color={focused ? "#3498db" : "#2f3542"}
+			color={focused ? "#4169e1" : "#2f3542"}
 			style={{ marginTop: 2 }}
 		/>
 	);

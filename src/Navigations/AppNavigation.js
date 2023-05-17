@@ -15,5 +15,5 @@ export default function Wrapper({ userToken }) {
 const AppNavigation = ({ userToken }) => {
 	let user = false;
 
-	return <>{user == true ? <AuthStack /> : <ButtonTabNavigation />}</>;
+	return <>{userToken==null ? <AuthStack /> : <ButtonTabNavigation />}</>;
 };

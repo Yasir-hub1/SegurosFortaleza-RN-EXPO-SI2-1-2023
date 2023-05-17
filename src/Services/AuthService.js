@@ -28,7 +28,7 @@ export async function signup1(data) {
     try {
         // console.log("entrando");
         let res = await axios.post("signup", data);
-        console.log("CREANDO ",res)
+        console.log("CREANDO ",res.data)
         return res.data.message;
     } catch (e) {
         console.log(e);
@@ -51,7 +51,18 @@ export async function logout() {
 
 }
 
-//OBTENER CONTRATOS ESFECIFICOS DEL CLIENTE
+//OBTENER DATOS DEL CLIENTE
+ export async function listarVehiculos(){
+    try {
+        let {data}= await axios.get("listaVehiculos");
+        console.log("desde AXIOS ",data);
+        return data.data;
+        
+    } catch (error) {
+        throw errorHandler(error)
+    }
+
+ }
 
 
 

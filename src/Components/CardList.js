@@ -10,22 +10,29 @@ import {
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { urlImgVehiculo } from "../Util/Api";
+import errorHandler from "../Util/AxiosErrorHandler";
+import { eliminarVehiculo } from "../Services/AuthService";
 
 const CardList = props => {
 	const { data, onRefresh, navigation } = props;
 
 	const [refreshing, setRefreshing] = useState(false);
 
-	const handleShow = id => {
-		navigation.navigate("showVehiculo", { id_vehiculo: id });
+	const handleShow = dataShow => {
+		navigation.navigate("showVehiculo", { dataItems:dataShow });
 	};
 
 	const handleEdit = data => {
 		navigation.navigate("editVehiculo", { dataItem:data });
 	};
 
-	const handleDelete = id => {
-		console.log(`Eliminar tarjeta ${id}`);
+	const handleDelete = async(id) => {
+		try {
+			const _eliminar= await eliminarVehiculo(id);
+			console.log("desde Vista ",_eliminar);
+		} catch (error) {
+			throw errorHandler(error);
+		}
 	};
 
 	const renderItem = ({ item }) => (
@@ -42,7 +49,7 @@ const CardList = props => {
 					<Text>{item.descripcion}</Text>
 
 					<View style={{ flexDirection: "row", marginTop: 10 }}>
-						<TouchableOpacity onPress={() => handleShow(item.id)}>
+						<TouchableOpacity onPress={() => handleShow(item)}>
 							<FontAwesome
 								name="eye"
 								size={20}

@@ -7,77 +7,75 @@ import errorHandler from "../Util/AxiosErrorHandler";
 
 /* FUNCION PARA INICIAR SESION CON DATOS DE LA API */
 export async function login(data) {
-    try {
-        data.device_name = Platform.OS;
-        /* peticion a la API */
-        let res = await axios.post("login", data);
+	try {
+		data.device_name = Platform.OS;
+		/* peticion a la API */
+		let res = await axios.post("login", data);
 
-        // console.log("DESDE LOGIN FUNCTION "+ JSON.stringify(res.data.data.cliente));
-        await setItemAsync(USER_TOKEN_KEY, res.data.data.token);
-        await setItemAsync(USER_KEY, JSON.stringify(res.data.data.cliente));// respuesta del server
-        return res.data;
-    } catch (e) {
-        console.log("desde login",e);
-        throw errorHandler(e);
-    }
-
+		// console.log("DESDE LOGIN FUNCTION "+ JSON.stringify(res.data.data.cliente));
+		await setItemAsync(USER_TOKEN_KEY, res.data.data.token);
+		await setItemAsync(USER_KEY, JSON.stringify(res.data.data.cliente)); // respuesta del server
+		return res.data;
+	} catch (e) {
+		console.log("desde login", e);
+		throw errorHandler(e);
+	}
 }
 /* function para crear la cuenta */
 export async function signup1(data) {
-    // console.log(data);
-    try {
-        // console.log("entrando");
-        let res = await axios.post("signup", data);
-        console.log("CREANDO ",res.data)
-        return res.data.message;
-    } catch (e) {
-        console.log(e);
-        throw errorHandler(e);
-
-    }
-
+	// console.log(data);
+	try {
+		// console.log("entrando");
+		let res = await axios.post("signup", data);
+		
+		return res.data.message;
+	} catch (e) {
+		console.log(e);
+		throw errorHandler(e);
+	}
 }
 
 /* ELIMINA EL TOKEN DE USUARIO AL CERRAR SESION */
 export async function logout() {
-    try {
-        let res = await axios.post("logout");
-        await deleteItemAsync(USER_TOKEN_KEY);
-        await deleteItemAsync(USER_KEY);
-        return res.data;
-    } catch (e) {
-        throw errorHandler(e);
-    }
-
+	try {
+		let res = await axios.post("logout");
+		await deleteItemAsync(USER_TOKEN_KEY);
+		await deleteItemAsync(USER_KEY);
+		return res.data;
+	} catch (e) {
+		throw errorHandler(e);
+	}
 }
 
 //OBTENER DATOS DEL CLIENTE
- export async function listarVehiculos(){
-    try {
-        let {data}= await axios.get("listaVehiculos");
-        console.log("desde AXIOS ",data);
-        return data.data;
-        
-    } catch (error) {
-        throw errorHandler(error)
-    }
+export async function listarVehiculos() {
+	try {
+		let { data } = await axios.get("listaVehiculos");
 
- }
+		return data.data;
+	} catch (error) {
+		throw errorHandler(error);
+	}
+}
 
+// actualizando vehiculos
 
- // actualizando vehiculos
+export async function editarVehiculo(data) {
+	try {
+		let resp = await axios.post("editarVehiculos", { data });
 
- export async function editarVehiculo(data){
-    try {
-        let resp= await axios.post("editarVehiculos",{data});
-        console.log(resp.data);
-        return resp.data.data;
-    } catch (error) {
-        throw errorHandler(error);
-    }
- }
+		return resp.data.data;
+	} catch (error) {
+		throw errorHandler(error);
+	}
+}
 
-
-
-
-
+export async function eliminarVehiculo(id) {
+	try {
+		let resp = await axios.post("eliminarVehiculo",{"id":id} );
+		console.log(resp.data);
+		return resp.data.data;
+	} catch (error) {
+		throw errorHandler(error);
+	}
+}

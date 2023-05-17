@@ -21,7 +21,7 @@ const EmailInput = ({name,control,errors,inputStyle,errValiStyle,placeholder}) =
         style={inputStyle}
         // placeholderTextColor="#95afc0"
         leftIcon={
-            <Icon name="at" type='ionicon' size={24} color="#9b59b6" />
+            <Icon name="at" type='ionicon' size={24} color="#4169e1" />
         }
         keyboardType="email-address"
         />

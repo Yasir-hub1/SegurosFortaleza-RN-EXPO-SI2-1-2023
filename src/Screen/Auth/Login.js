@@ -47,7 +47,7 @@ const Login = ({ navigation }) => {
 	};
 
 	return (
-		<SafeAreaView style={{ flex: 1, justifyContent: "center" }}>
+		<SafeAreaView style={{ flex: 1, justifyContent: "center",backgroundColor:"#fff" }}>
 			{loading === true ? <ActivityLoader /> : null}
 
 			<View style={{ paddingHorizontal: 25 }}>
@@ -56,7 +56,7 @@ const Login = ({ navigation }) => {
 					<LottieView
 						resizeMode={"contain"}
 						style={{ width: 300, height: 200 }}
-						source={require("../../Image/lottie/portadaLogin.json")}
+						source={require("../../Image/lottie/login.json")}
 						autoPlay
 					/>
 				</View>
@@ -66,7 +66,7 @@ const Login = ({ navigation }) => {
 						// fontFamily: 'roboto-medium',
 						fontSize: 28,
 						fontWeight: "500",
-						color: "#333",
+						color: "#1D293F",
 						marginBottom: 30,
 					}}>
 					Login
@@ -97,7 +97,7 @@ const Login = ({ navigation }) => {
 					title="Acceder"
 					type="outline"
 					onPress={handleSubmit(login1)}
-					titleStyle={{ color: "#9b59b6" }}
+					titleStyle={{ color: "#4169e1" }}
 				/>
 
 				<View
@@ -116,7 +116,7 @@ const Login = ({ navigation }) => {
 					<Text>Aún no tienes una cuenta?</Text>
 					<TouchableOpacity onPress={() => navigation.navigate("Signup")}>
 						<View style={{ marginLeft: 40 }} />
-						<Text style={{ color: "#fe5000", fontWeight: "700" }}>
+						<Text style={{ color: "#4169e1", fontWeight: "700" }}>
 							{" "}
 							Regístrate
 						</Text>

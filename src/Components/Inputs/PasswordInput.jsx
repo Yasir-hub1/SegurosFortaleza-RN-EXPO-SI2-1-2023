@@ -23,10 +23,10 @@ const PasswordInput = ({placeholder,name,control,errors,inputStyle,errValiStyle,
         style={inputStyle}
         // placeholderTextColor="#6d6861"
         leftIcon={
-            <Icon name="key" type='ionicon' size={24} color="#9b59b6" />
+            <Icon name="key" type='ionicon' size={24} color="#4169e1" />
         }
         rightIcon={
-          <Icon name="eye" type='ionicon' size={24} color="#9b59b6" onPress={toggleSecureEntry} />
+          <Icon name="eye" type='ionicon' size={24} color="#4169e1" onPress={toggleSecureEntry} />
       }
       secureTextEntry={secureEntry}
         />

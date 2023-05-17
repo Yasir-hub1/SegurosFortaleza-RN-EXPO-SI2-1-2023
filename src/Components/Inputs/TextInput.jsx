@@ -22,7 +22,7 @@ const TextInput = ({name,required=true,minLength,maxLength,control,errors,inputS
         style={inputStyle}
         // placeholderTextColor="black"
         leftIcon={
-            <Icon name={iconName} type='ionicon' size={24} color="#9b59b6" />
+            <Icon name={iconName} type='ionicon' size={24} color="#4169e1" />
         }
        
         />

@@ -57,7 +57,7 @@ const Signup = ({ navigation }) => {
 	};
 
 	return (
-		<SafeAreaView style={{ flex: 1, justifyContent: "center" }}>
+		<SafeAreaView style={{ flex: 1, justifyContent: "center",backgroundColor:"#fff" }}>
 			<ScrollView
 				showsVerticalScrollIndicator={false}
 				style={{ paddingHorizontal: 25 }}>
@@ -65,7 +65,7 @@ const Signup = ({ navigation }) => {
 					<LottieView
 						resizeMode={"contain"}
 						style={{ width: 300, height: 300 }}
-						source={require("../../Image/lottie/portadaLogin.json")}
+						source={require("../../Image/lottie/login.json")}
 						autoPlay
 					/>
 				</View>
@@ -131,7 +131,7 @@ const Signup = ({ navigation }) => {
 					title="Registar"
 					type="outline"
 					onPress={handleSubmit(_Signup)}
-					titleStyle={{ color: "#9b59b6" }}
+					titleStyle={{ color: "#4169e1" }}
 				/>
 
 				<View
@@ -142,7 +142,7 @@ const Signup = ({ navigation }) => {
 					}}>
 					<Text>Tienes una cuenta?</Text>
 					<TouchableOpacity onPress={() => navigation.goBack()}>
-						<Text style={{ color: "#3498db", fontWeight: "700" }}> Login</Text>
+						<Text style={{ color: "#4169e1", fontWeight: "700" }}> Login</Text>
 					</TouchableOpacity>
 				</View>
 			</ScrollView>

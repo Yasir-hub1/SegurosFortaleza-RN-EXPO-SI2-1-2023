@@ -6,16 +6,26 @@ import ShowVehiculo from "../../Screen/Client/vehiculos/ShowVehiculo";
 
 const Stack = createNativeStackNavigator();
 
-const VehiculosStack = ({navigation}) => {
+const VehiculosStack = ({ navigation }) => {
 	return (
 		<Stack.Navigator
-			screenOptions={{ headerShown: false }}
-			initialRouteName="inicioVehiculo"
-			
-			>
-			<Stack.Screen name="inicioVehiculo" component={InicioVehiculos}  />
-			<Stack.Screen name="editVehiculo" component={EditVehiculo} />
-			<Stack.Screen name="showVehiculo" component={ShowVehiculo} />
+			screenOptions={{ headerShown: true }}
+			initialRouteName="inicioVehiculo">
+			<Stack.Screen
+				name="inicioVehiculo"
+				component={InicioVehiculos}
+				options={{ headerTitle: "Vehiculos", headerTitleAlign: "center" }}
+			/>
+			<Stack.Screen
+				name="editVehiculo"
+				component={EditVehiculo}
+				options={{ headerTitle: "Actualizar", headerTitleAlign: "center" }}
+			/>
+			<Stack.Screen
+				name="showVehiculo"
+				component={ShowVehiculo}
+				options={{ headerTitle: "Informacion", headerTitleAlign: "center" }}
+			/>
 		</Stack.Navigator>
 	);
 };

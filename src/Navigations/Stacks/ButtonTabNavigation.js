@@ -30,9 +30,7 @@ const TabBar = ({ appName }) => {
 				name="Vehiculos"
 				component={VehiculosStack}
 				options={{
-					headerTitle: "Bienvenido",
-					// headerTitleAlign: "center",
-					headerShown: true,
+					headerShown: false,
 				}}
 			/>
 			<btnTabs.Screen

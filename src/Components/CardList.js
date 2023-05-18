@@ -12,6 +12,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { urlImgVehiculo } from "../Util/Api";
 import errorHandler from "../Util/AxiosErrorHandler";
 import { eliminarVehiculo } from "../Services/AuthService";
+import Toast from "react-native-root-toast";
 
 const CardList = props => {
 	const { data, onRefresh, navigation } = props;
@@ -29,6 +30,7 @@ const CardList = props => {
 	const handleDelete = async(id) => {
 		try {
 			const _eliminar= await eliminarVehiculo(id);
+			Toast.show("Deslice hacia abajo para recargar")
 			console.log("desde Vista ",_eliminar);
 		} catch (error) {
 			throw errorHandler(error);

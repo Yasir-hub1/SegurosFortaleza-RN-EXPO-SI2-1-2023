@@ -27,7 +27,7 @@ export async function signup1(data) {
 	try {
 		// console.log("entrando");
 		let res = await axios.post("signup", data);
-		
+
 		return res.data.message;
 	} catch (e) {
 		console.log(e);
@@ -72,10 +72,34 @@ export async function editarVehiculo(data) {
 
 export async function eliminarVehiculo(id) {
 	try {
-		let resp = await axios.post("eliminarVehiculo",{"id":id} );
-		console.log(resp.data);
+		let resp = await axios.post("eliminarVehiculo", { id: id });
+	
 		return resp.data.data;
 	} catch (error) {
 		throw errorHandler(error);
 	}
 }
+
+//TODO: APARTADO DE PAGOS
+
+export async function listarPago() {
+	try {
+		let resp = await axios.get("listaPagos");
+
+		return resp.data.data;
+	} catch (error) {
+		throw errorHandler(error);
+	}
+}
+
+export async function detallePago(id_poliza) {
+	try {
+		let resp = await axios.post("detallePago", { id: id_poliza });
+
+		return resp.data.data;
+	} catch (error) {
+		throw errorHandler(error);
+	}
+}
+
+

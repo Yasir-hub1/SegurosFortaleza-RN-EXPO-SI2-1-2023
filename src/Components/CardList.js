@@ -42,7 +42,7 @@ const CardList = props => {
 			<View style={styles.cardBody}>
 				<TouchableOpacity>
 					<Image
-						source={{ uri: urlImgVehiculo + item.imagen }}
+						source={{ uri: item.path }}
 						style={styles.image}
 					/>
 				</TouchableOpacity>

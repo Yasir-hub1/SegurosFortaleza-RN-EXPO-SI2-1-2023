@@ -91,7 +91,7 @@ const DetallePago = ({route,navigation}) => {
       <CustomSelect
       data={Data}
       setSelected={val => setSelectPago(val)}
-      placeholder="Ejija un pago"
+      placeholder="Eliga un pago"
       search={true}
       searchPlaceholder={"Buscar"}
       save={"key"}

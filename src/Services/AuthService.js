@@ -4,6 +4,7 @@ import { setItemAsync, deleteItemAsync } from "expo-secure-store";
 import { USER_TOKEN_KEY, USER_KEY } from "../Providers/AuthProvider";
 
 import errorHandler from "../Util/AxiosErrorHandler";
+import { showToast } from "../Components/funciones";
 
 /* FUNCION PARA INICIAR SESION CON DATOS DE LA API */
 export async function login(data) {
@@ -73,7 +74,7 @@ export async function editarVehiculo(data) {
 export async function eliminarVehiculo(id) {
 	try {
 		let resp = await axios.post("eliminarVehiculo", { id: id });
-	
+
 		return resp.data.data;
 	} catch (error) {
 		throw errorHandler(error);
@@ -102,4 +103,19 @@ export async function detallePago(id_poliza) {
 	}
 }
 
-
+//TODO: CREAR COTIZACION
+export async function crearCotizacion(cotizacion) {
+	try {
+		
+			const resp = await axios.post("/crearCotizacion", cotizacion);
+			console.log("desde back Cotizacion ", resp.data);
+			if (resp.data.status==="Success") {
+				console.log("front contizacion ", resp.data);
+				showToast("Se registró correctamente", "#2ecc71");
+				return resp.data;
+			}
+		
+	} catch (error) {
+		throw errorHandler(error);
+	}
+}

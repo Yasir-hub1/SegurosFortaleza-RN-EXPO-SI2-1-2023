@@ -11,10 +11,13 @@ import { useAuth } from "../../Providers/AuthProvider";
 import { login } from "../../Services/AuthService";
 
 import LottieView from "lottie-react-native";
+import ModalCotizacion from "../../Components/ModalCotizacion";
 
 const Login = ({ navigation }) => {
 	const [Error, setError] = useState(null);
 	const [loading, setloading] = useState(false);
+	const [isVisibleModal, setIsVisibleModal] = useState(false);
+	
 	const { handleLogin } = useAuth();
 	// proteccion de contraseña
 	const [secureEntry, setSecureEntry] = useState(true);
@@ -122,7 +125,9 @@ const Login = ({ navigation }) => {
 						</Text>
 					</TouchableOpacity>
 				</View>
+				
 			</View>
+			<ModalCotizacion isVisible={isVisibleModal}/>
 		</SafeAreaView>
 	);
 };

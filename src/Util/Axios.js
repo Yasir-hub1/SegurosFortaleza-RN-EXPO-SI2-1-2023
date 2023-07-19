@@ -7,7 +7,7 @@ import { USER_TOKEN_KEY } from "../Providers/AuthProvider";
 import * as SecureStore from "expo-secure-store";
 
 
-const Base_URL = "http://192.168.100.180:8000/api";
+const Base_URL = "http://192.168.0.8:8000/api";
 const  axiosInstance = axios.create({
   baseURL: `${Base_URL}/`,
   timeout: 5000,

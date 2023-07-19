@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
 	View,
 	Button,
@@ -12,6 +12,7 @@ import { Input } from "react-native-elements";
 import { crearCotizacion } from "../Services/AuthService";
 import Toast from "react-native-root-toast";
 import { showToast } from "./funciones";
+import CustomSelect from "./CustomSelect";
 
 const ModalCotizacion = () => {
 	const [modalVisible, setModalVisible] = useState(false);
@@ -23,7 +24,9 @@ const ModalCotizacion = () => {
 	const [modelo, setModelo] = useState("");
 	const [cobertura, setCobertura] = useState("");
 	const [anio, setAnio] = useState("");
-	const [costo, setCosto] = useState("");
+	const [coberturaSelct,setCoberturaSelect] = useState (null);
+	
+
 
 	const handleSave = async () => {
 		let cotizacion = {
@@ -32,10 +35,10 @@ const ModalCotizacion = () => {
 			telefono: parseInt(telefono),
 			marca: marca,
 			modelo: modelo,
-			cobertura: cobertura,
+			cobertura: coberturaSelct,
 			anio: parseInt(anio),
-			costo: costo,
 		};
+
 
 		if (
 			cotizacion.name &&
@@ -43,7 +46,6 @@ const ModalCotizacion = () => {
 			cotizacion.modelo &&
 			cotizacion.marca &&
 			cotizacion.email &&
-			cotizacion.costo &&
 			cotizacion.cobertura &&
 			cotizacion.anio
 		) {
@@ -60,7 +62,6 @@ const ModalCotizacion = () => {
             setModelo("");
             setCobertura("");
             setAnio("");
-            setCosto("");
             }
 		} else {
 			// showToast("Todos los campos son obligatorios", "#e67e22");
@@ -69,6 +70,8 @@ const ModalCotizacion = () => {
 
 		
 	};
+
+	const CoberturaSelect = [{key:1,value:"basica"},{key:2, value:"completa"},{key:3, value: "terceros"}];
 
 	return (
 		<View>
@@ -130,10 +133,11 @@ const ModalCotizacion = () => {
 						</View>
 						<View style={styles.fieldContainer}>
 							<Text>Cobertura:</Text>
-							<Input
+							{/* <Input
 								value={cobertura}
 								onChangeText={text => setCobertura(text)}
-							/>
+							/> */}
+							<CustomSelect options = {CoberturaSelect} onSelect={setCoberturaSelect}/>
 						</View>
 					</View>
 					<View style={styles.rowContainer}>
@@ -142,14 +146,6 @@ const ModalCotizacion = () => {
 							<Input
 								value={anio}
 								onChangeText={text => setAnio(text)}
-								keyboardType="numeric"
-							/>
-						</View>
-						<View style={styles.fieldContainer}>
-							<Text>Costo:</Text>
-							<Input
-								value={costo}
-								onChangeText={text => setCosto(text)}
 								keyboardType="numeric"
 							/>
 						</View>

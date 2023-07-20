@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "expo-seguros",
-    "slug": "expo-seguros",
+    "name": "Seguros",
+    "slug": "Seguros",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,10 +21,26 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyC2iKcRjgOKH2Kzv1hqSCM18wan1a1cr68"
+        }
+      },
+      "permissions": [
+        "LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ],
+      "package": "com.ryac.seguros"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9f6bcc19-3945-4443-ac1e-ad16fc103c57"
+      }
     }
   }
 }

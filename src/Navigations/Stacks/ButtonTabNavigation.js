@@ -33,14 +33,14 @@ const TabBar = ({ appName }) => {
 					headerShown: false,
 				}}
 			/>
-			<btnTabs.Screen
+			{/* <btnTabs.Screen
 				name="Polisa"
 				component={PolisaStack}
 				/* options={{
 					
 					headerShown: false,
-				}} */
-			/>
+				}} 
+			/> */}
 
 			<btnTabs.Screen
 				name="Pagos"
@@ -59,6 +59,7 @@ const TabBar = ({ appName }) => {
 					// headerTitle: "Contratos",
 					// headerTitleAlign: "center",
 					headerShown: true,
+					
 				}}
 			/>
 

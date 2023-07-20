@@ -119,3 +119,30 @@ export async function crearCotizacion(cotizacion) {
 		throw errorHandler(error);
 	}
 }
+
+export async function listarSiniestros(){
+	try {
+		let resp = await axios.get("/listaSiniestro");
+		return resp.data.data;
+	} catch (error) {
+		throw errorHandler(error);
+	}
+}
+
+export async function listaVehiculos(){
+	try {
+		let resp= await axios.get("/listaVehiculos")
+		return resp.data.data;
+	} catch (error) {
+		throw errorHandler(error);
+	}
+}
+
+export async function registrarSiniestro(data){
+  try {
+	  let resp = await axios.post("/registrarSiniestro",data);
+	 return  resp.data;
+  } catch (error) {
+	throw errorHandler(error);
+  }
+}
